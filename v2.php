@@ -450,13 +450,13 @@ $GLOBALS['__ALFA_COLOR__'] = array(
 			)
 		),
 		"uploader_border" => array(
-			"key_color" => "#000",
+			"key_color" => "#0E304A",
 			"multi_selector" => array(
 				".inputfile" => "box-shadow:0 0 4px {color};border:1px solid {color};",
 			)
 		),
 		"uploader_background" => array(
-			"key_color" => "#000",
+			"key_color" => "#0E304A",
 			"multi_selector" => array(
 				".inputfile strong" => "background-color: {color};",
 			)
